@@ -1,97 +1,148 @@
 <!DOCTYPE html>
 <html>
-   <head>
-     <title> my calculator </title>
-        <style>
-            .main{background-color:rgb(23, 26, 25);width:270px;height:460px;border:2px solid black;}
-            button{  color:black; width:50px;height:50px;  margin: 10px 0; }
-          input{width:265px;height:90px;font-size:200%;}
-      </style>
+<head>
+	<title>Calculator</title>
+	<style type="text/css">
+		body{
+			width: 100%;
+			min-height: 100vh;
+			background: linear-gradient(to right, #fc466b, #3f5efb); 
+			overflow: hidden;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			margin: 0;
+		}
+		input[name="exp"]{
+			margin-left: 6px;
+			width: 182px;
+			height: 40px;
+			overflow: hidden;
+			padding: 0 20px;
+			font-size: 18px;
+			background: none;
+			background: rgba(255,255,255,1);
+			border: none;
+			letter-spacing: 2px;
+		}
+		tr{
+			display: block;
+		}
+		input[type="button"]{
+			width: 50px;
+			height: 50px;
+			border: 1px solid black;
+			line-height: 50px;
+			text-align: center;
+			margin: 2px;
+			outline: none;
+			border: none;
+			background: none;
+			font-size: 20px;
+			background: rgba(255,255,255,0.5);
+		}
+		#per{
+			width: 100px;
+		}
+		h1{
+			font-size: 40px;
+			line-height: 60px;
+			font-family: consolas;
+			margin-right: -300px;
+		}
+	</style>
 </head>
 <body>
+	<div>
+		<h1>Solve the Problem<br>or leave the Problem<br>Don't Live With the<br> Problem.</h1>
+	</div>
+	<div class="calculator">
+		<form>
+			<input type="" name="exp" disabled="">
+		</form>
+		<table>
+			<tr>
+				<td><input type="button" onclick="clr()" value="C"></td>
+				<td><input type="button" onclick="back()" value="<"></td>
+				<td><input type="button" onclick="insert('/')" value="/"></td>
+				<td><input type="button" onclick="insert('*')" value="X"></td>
+			</tr>
+			<tr>
+				<td><input type="button" onclick="insert('7')" value="7"></td>
+				<td><input type="button" onclick="insert('8')" value="8"></td>
+				<td><input type="button" onclick="insert('9')" value="9"></td>
+				<td><input type="button" onclick="insert('-')" value="-"></td>
+			</tr>
+			<tr>
+				<td><input type="button" onclick="insert('4')" value="4"></td>
+				<td><input type="button" onclick="insert('5')" value="5"></td>
+				<td><input type="button" onclick="insert('6')" value="6"></td>
+				<td><input type="button" onclick="insert('+')" value="+"></td>
+			</tr>
+			<tr style="max-height: 54px;display: flex;justify-content: space-around;">
+				<td><input type="button" onclick="insert('1')" value="1"></td>
+				<td><input type="button" onclick="insert('2')" value="2"></td>
+				<td><input type="button" onclick="insert('3')" value="3"></td>
+				<td colspan=5><input type="button" value="=" onclick="check()" style="height: 106px"></td>
+			</tr>
+			<tr>
+				<td colspan=2><input type="button" style="width: 108px" value="0" onclick="insert('0')"></td>
+				<td><input type="button" value="." onclick="insert('.')"></td>
+			</tr>
+			<tr>
+				<td><input type="button" onclick="sin()" value="sin"></td>
+				<td><input type="button" onclick="cos()" value="cos"></td>
+				<td><input type="button" onclick="tan()" value="tan"></td>
+				<td><input type="button" onclick="exp()" value="exp"></td>
+			</tr>
+		</table>
+	</div>
+	<script type="text/javascript">
+		function clr(){
+			document.querySelector('input').value = "";
+		}
+		function insert(e){
+			var val = document.querySelector('input').value;
+			document.querySelector('input').value = val+e;
+		}
+		function back(){
+			document.querySelector('input').value = document.querySelector('input').value.substring(0,document.querySelector('input').value.length-1);
+		}
+		function check(){
+			var exp = document.querySelector('input').value;
+			if(exp){
+				document.querySelector('input').value = eval(exp);
+			}
+		}
 
-<style>
-	button
-    {
-    	background-color: #4CAF50;
-        border: none;
-        color: white;
-        padding: 10px;
-		border-radius: 4px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-    }
-    body
-    {
-		font-family: "Comic Sans MS", "Comic Sans", cursive;
-    }
-</style>
+		function sin(){
+			var exp = document.querySelector('input').value;
+			if(exp){
+				document.querySelector('input').value = Math.sin(eval(exp));
+			}
+		}
 
-<script>
-    function number(value){
-        document.form1.result.value +=value;
-    }
-    function cle(value){
-        document.form1.result.value =value;
-    }
-    function evalua(){
-      document.form1.result.value = eval(document.form1.result.value);
-    }
- 
-function cos(form1) {
-     document.form1.result.value = Math.cos(form1.result.value);
-}
-function sin(form1) {
-     document.form1.result.value = Math.sin(form1.result.value);
-}
-function tan(form1) {
-     document.form1.result.value = Math.tan(form1.result.value);
-}
-function log(form1) {
-     document.form1.result.value = Math.log(form1.result.value);
-}
-function sqrt(form1) {
-     document.form1.result.value = Math.sqrt(form1.result.value);
-}
-function exp(form1) {
-     document.form1.result.value = Math.exp(form1.result.value);
-}
-</script>
+		function cos(){
+			var exp = document.querySelector('input').value;
+			if(exp){
+				document.querySelector('input').value = Math.cos(eval(exp));
+			}
+		}
 
-  <div class="main">
-        <b style = "color: 'red'">CALCULATOR</b>
-      <form name="form1">
-         <input  type="textfield"  name="result"    value=" " style = "text-align: right; 
-         background-color:Tomato;
-         
-         "/> <br>
-        <button type="button"    onclick=" number(value)" value="1"><b>1</b> </button>
-        <button type="button"    onclick="number(value)" value="2"><b>2</b> </button>
-        <button type="button"   onclick="number(value)" value="3"><b>3</b> </button>
-       <button type="button"   onclick="number(value)" value="+"><b>+</b> </button>
-       <button type="button"  onclick="number(value)" value="-"><b>-</b> </button>  <br>
-        <button type="button"  onclick="number(value)" value="4"><b>4</b> </button>
-        <button type="button"  onclick="number(value)" value="5"><b>5</b> </button>
-        <button type="button"  onclick="number(value)" value="6"><b>6</b> </button>
-       <button type="button"  onclick="number(value)" value="*"><b>*</b> </button>
-       <button type="button"  onclick="number(value)" value="/"><b>/</b> </button><br>
-        <button type="button"  onclick="number(value)" value="7"><b>7</b> </button>
-       <button type="button"  onclick="number(value)" value="8"><b>8</b> </button>
-       <button type="button"  onclick="number(value)" value="9"><b>9</b> </button>
-       <button type="button"  onclick="number(value)" value="%"><b>%</b> </button>
-      <button type="button"  onclick="number(value)" value="^"><b>^</b> </button><br>
-     <button type="button"  onclick="number(value)" value="0"><b>0</b> </button>
-    <button type="button"  onclick="number(value)" value="."><b>.</b> </button>
-   <button type="button"  onclick="exp(form1)" value="exp"><b>EXP</b> </button>
-   <button type="button"  onclick="sin(form1)" value="sin"><b>sin</b> </button>
-  <button type="button"  onclick="cos(form1)" value="cos"><b>cos</b> </button><br>
-  <button type="button" onclick="cle(value)" value=" "><b>DEL</b> </button>
- <button type="button"  onclick="sqrt(form1)" value="sqrt"><b>SQRT</b> </button>
-<button type="button"  onclick="log(form1)" value="log"><b>log</b> </button>
-<button type="button"  onclick="tan(form1)" value="tan"><b>tan</b> </button>
-<button type="button"  onclick="evalua()" value="="><b>=</b> </button><br><br>
-</form>
-    </div>
- </body>
+		function tan(){
+			var exp = document.querySelector('input').value;
+			if(exp){
+				document.querySelector('input').value = Math.tan(eval(exp));
+			}
+		}
+
+		function exp(){
+			var exp = document.querySelector('input').value;
+			if(exp){
+				document.querySelector('input').value = Math.exp(eval(exp));
+			}
+		}
+
+	</script>
+</body>
 </html>
